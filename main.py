@@ -1,5 +1,6 @@
 import keyboard as keyboard
 import pygame
+import random
 
 # initialize
 pygame.init()
@@ -23,6 +24,14 @@ playerX = place_x
 playerY = place_y
 playerX_change = 0
 
+# player
+enemyImg = pygame.image.load('enemy.png')
+# playerImg = pygame.transform.scale(playerImg, (32, 32))
+enemyX = random.randint(0, 800)
+enemyY = random.randint(50, 150)
+enemyX_change = 0.3
+enemyY_change = 0
+
 
 def player(x, y):
     if x <= 0:
@@ -30,6 +39,14 @@ def player(x, y):
     elif x >= 736:
         x = 736
     screen.blit(playerImg, (x, y))
+
+
+def enemy(x, y):
+    if x <= 0:
+        x = 0
+    elif x >= 736:
+        x = 736
+    screen.blit(enemyImg, (x, y))
 
 
 # game loop
@@ -64,4 +81,5 @@ while running:
 
     playerX += playerX_change
     player(playerX, playerY)
+    enemy(enemyX, enemyY)
     pygame.display.update()
